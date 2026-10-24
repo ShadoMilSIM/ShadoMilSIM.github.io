@@ -5,513 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>US ASOC | Army Special Operations Command</title>
     
-    <!-- Military / Tactical Typography -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons for Navigation & UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Playfair+Display:ital,wght@1,600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        /* Modern Tactical CSS Variables & Reset */
-  :root {
-    --bg-dark: #000000;
-    --yellow-gold: #FF2A2A;
-    --yellow-gold-glow: rgba(255, 42, 42, 0.4);
-    --border-gold: #801818;
-    --text-white: #FFFFFF;
-    --text-muted: #A0A5AD;
-    --card-bg: rgba(14, 16, 20, 0.85);
-    --font-heading: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
-  }
+        :root {
+            --red-bright: #FF2A2A;
+            --red-glow: rgba(255, 42, 42, 0.4);
+            --border-red: #801818;
+            --bg-dark: #08090b;
+            --card-bg: rgba(12, 14, 18, 0.88);
+            --text-white: #FFFFFF;
+            --text-muted: #A0A5AD;
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            --font-motto: 'Playfair Display', serif;
+        }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body, html {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: var(--font-body);
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            line-height: 1.5;
-            overflow-x: hidden;
-            /* Subtle dark camouflage background texture overlay */
-            background-image: radial-gradient(rgba(20, 20, 20, 0.6) 2px, transparent 0);
-            background-size: 24px 24px;
+        /* Background Gameplay Image (Matches Screenshot) */
+        .bg-gameplay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to bottom, rgba(5,6,8,0.7), rgba(5,6,8,0.95)),
+                url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2000&auto=format&fit=crop'); /* Replace with your own Roblox screenshot URL if desired */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* ---------------- TOP NAVIGATION BAR ---------------- */
+        /* Top Navbar */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 60px;
+            height: 55px;
             background: rgba(0, 0, 0, 0.95);
-            border-bottom: 1.5px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-red);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             z-index: 1000;
-            backdrop-filter: blur(8px);
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-white);
+            gap: 10px;
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.15rem;
-            letter-spacing: 1.5px;
+            font-size: 1.1rem;
+            color: #ffffff;
+            letter-spacing: 1px;
         }
 
         .brand-logo {
-            height: 38px;
+            height: 28px;
             width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 4px rgba(255, 199, 0, 0.3));
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 20px;
         }
 
         .nav-links a {
-            color: var(--text-white);
+            color: #ffffff;
             text-decoration: none;
+            font-family: var(--font-body);
             font-size: 0.95rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.25s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            opacity: 0.85;
+            gap: 6px;
+            transition: color 0.2s ease;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            opacity: 1;
-            color: var(--yellow-gold);
-            text-shadow: 0 0 8px var(--yellow-gold-glow);
+        .nav-links a:hover {
+            color: var(--red-bright);
         }
 
-        /* ---------------- HERO SECTION ---------------- */
-        .hero {
+        /* Hero Section */
+        .hero-container {
             position: relative;
+            height: 100vh;
             width: 100%;
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding-top: 60px;
-            background: radial-gradient(circle at center, rgba(15, 17, 22, 0.8) 0%, rgba(0, 0, 0, 0.98) 85%);
-            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Background Crest & Side Patches Visual Layout */
-        .hero-graphics-container {
+        .insignia-backdrop {
             position: absolute;
-            inset: 0;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             pointer-events: none;
             z-index: 1;
-            padding: 0 4vw;
         }
 
-        /* Central ASOC Spearhead Emblem */
-        .center-spearhead {
-            height: 72vh;
-            max-height: 650px;
-            width: auto;
-            opacity: 0.22;
-            filter: grayscale(80%) brightness(0.9) contrast(1.2);
-            object-fit: contain;
+        .center-emblem {
+            height: 60vh;
+            max-height: 500px;
+            opacity: 0.35;
+            filter: grayscale(100%) contrast(120%) brightness(80%);
         }
 
-        /* Side Division Patches (Night Stalkers, Special Forces, Ranger) */
         .side-patch {
             position: absolute;
             height: 32vh;
-            max-height: 280px;
-            width: auto;
-            opacity: 0.12;
-            filter: grayscale(100%) brightness(0.8);
-            object-fit: contain;
-            top: 50%;
-            transform: translateY(-50%);
+            max-height: 260px;
+            opacity: 0.18;
+            filter: grayscale(100%) brightness(70%);
         }
 
-        .side-patch-left-far {
-            left: 2%;
-        }
+        .left-patch { left: 5%; }
+        .right-patch { right: 5%; }
 
-        .side-patch-left-near {
-            left: 18%;
-        }
-
-        .side-patch-right-near {
-            right: 18%;
-        }
-
-        .side-patch-right-far {
-            right: 2%;
-        }
-
-        /* Foreground Hero Typography */
         .hero-content {
             position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            padding: 0 20px;
+            z-index: 2;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0 15px;
+            margin-top: 20px;
         }
 
         .hero-title {
             font-family: var(--font-heading);
-            color: var(--yellow-gold);
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
+            color: var(--red-bright);
             letter-spacing: 3px;
             text-transform: uppercase;
+            text-shadow: 0 0 12px var(--red-glow), 2px 2px 4px rgba(0, 0, 0, 0.9);
             line-height: 1.15;
-            text-shadow: 0 0 20px var(--yellow-gold-glow), 2px 2px 8px rgba(0,0,0,0.9);
-            margin-bottom: 5px;
-        }
-
-        .hero-title .line-two {
-            display: block;
-            margin-top: 4px;
+            max-width: 900px;
         }
 
         .hero-motto {
-            font-size: 1.5rem;
-            font-style: italic;
-            font-weight: 600;
-            color: var(--text-white);
-            margin-top: 15px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
-        }
-
-        /* Gold Outline Call to Action Button */
-        .btn-learn-more {
-            display: inline-block;
-            padding: 10px 42px;
-            border: 1.5px solid var(--yellow-gold);
-            background: rgba(0, 0, 0, 0.65);
-            color: var(--yellow-gold);
-            font-family: var(--font-heading);
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 0 12px rgba(255, 199, 0, 0.15);
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-learn-more:hover {
-            background: var(--yellow-gold);
-            color: #000000;
-            box-shadow: 0 0 25px rgba(255, 199, 0, 0.6);
-            transform: translateY(-2px);
-        }
-
-        /* ---------------- CONTENT SECTIONS ---------------- */
-        .main-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem 6rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .section-block {
-            background: var(--card-bg);
-            border: 1px solid var(--border-gold);
-            border-top: 3px solid var(--yellow-gold);
-            padding: 3rem 2.5rem;
-            margin-bottom: 4rem;
-            border-radius: 2px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--font-heading);
-            color: var(--yellow-gold);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .section-body {
-            color: var(--text-white);
-            font-size: 1.15rem;
-            line-height: 1.7;
-        }
-
-        /* Units Grid Layout */
-        .units-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 1.5rem;
-        }
-
-        .unit-card {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 199, 0, 0.2);
-            padding: 1.5rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .unit-card:hover {
-            border-color: var(--yellow-gold);
-            transform: translateY(-3px);
-        }
-
-        .unit-card h3 {
-            font-family: var(--font-heading);
-            color: var(--yellow-gold);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .unit-card p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        /* Gallery / Propaganda Grid */
-        .propaganda-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 1.5rem;
-        }
-
-        .propaganda-item {
-            position: relative;
-            aspect-ratio: 16/9;
-            background: #111;
-            border: 1px solid rgba(255, 199, 0, 0.3);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .propaganda-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.85) contrast(1.1);
-            transition: transform 0.4s ease;
-        }
-
-        .propaganda-item:hover img {
-            transform: scale(1.05);
-            filter: brightness(1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            background: rgba(0, 0, 0, 0.95);
-            border-top: 1px solid var(--border-gold);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        /* ---------------- RESPONSIVE STYLING ---------------- */
-        @media (max-width: 1024px) {
-            .side-patch-left-far, .side-patch-right-far {
-                display: none;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .center-spearhead {
-                height: 55vh;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0 1rem;
-            }
-            .side-patch {
-                display: none;
-            }
-            .hero-title {
-                font-size: 1.85rem;
-                letter-spacing: 1.5px;
-            }
-            .hero-motto {
-                font-size: 1.2rem;
-            }
-            .center-spearhead {
-                height: 45vh;
-            }
-            .nav-links a span {
-                display: none; /* Icon-only on mobile */
-            }
-            .nav-links a {
-                font-size: 1.1rem;
-            }
-            .section-block {
-                padding: 2rem 1.25rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- TOP NAVIGATION BAR -->
-    <nav class="navbar">
-        <a href="#" class="nav-brand">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/United_States_Army_Special_Operations_Command_SSI.svg" alt="US ASOC Emblem" class="brand-logo" onerror="this.src='https://placehold.co/100x100/111/FFC700?text=ASOC'">
-            <span>US ASOC</span>
-        </a>
-
-        <div class="nav-links">
-            <a href="#about" class="active"><i class="fa-solid fa-circle-info"></i> <span>About</span></a>
-            <a href="#units"><i class="fa-solid fa-users"></i> <span>Units</span></a>
-            <a href="#propaganda"><i class="fa-solid fa-image"></i> <span>Propaganda</span></a>
-        </div>
-    </nav>
-
-    <!-- MAIN HERO SECTION -->
-    <header class="hero">
-        <!-- Background Overlay Artwork (Matching Reference Layout) -->
-        <div class="hero-graphics-container">
-            <!-- Left Side Patches -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/75th_Ranger_Regiment_SSI.svg/1200px-75th_Ranger_Regiment_SSI.svg.png" class="side-patch side-patch-left-far" alt="Ranger Patch" onerror="this.style.display='none'">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_160th_Special_Operations_Aviation_Regiment_SSI.svg/800px-US_160th_Special_Operations_Aviation_Regiment_SSI.svg.png" class="side-patch side-patch-left-near" alt="Night Stalkers Patch" onerror="this.style.display='none'">
-
-            <!-- Central ASOC Crest ("SINE PARI" Arrowhead Emblem) -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/United_States_Army_Special_Operations_Command_SSI.svg" class="center-spearhead" alt="ASOC Spearhead Emblem" onerror="this.src='https://placehold.co/600x600/111/444?text=ASOC+EMBLEM'">
-
-            <!-- Right Side Patches -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/1st_Special_Forces_Command_SSI.svg/800px-1st_Special_Forces_Command_SSI.svg.png" class="side-patch side-patch-right-near" alt="Special Forces Patch" onerror="this.style.display='none'">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/75th_Ranger_Regiment_SSI.svg/1200px-75th_Ranger_Regiment_SSI.svg.png" class="side-patch side-patch-right-far" alt="Special Forces Airborne" onerror="this.style.display='none'">
-        </div>
-
-        <!-- Foreground Hero Text & Call To Action -->
-        <div class="hero-content">
-            <h1 class="hero-title">
-                ARMY SPECIAL OPERATIONS
-                <span class="line-two">COMMAND</span>
-            </h1>
-            <p class="hero-motto">"Sine Pari"</p>
-            <a href="#about" class="btn-learn-more">LEARN MORE</a>
-        </div>
-    </header>
-
-    <!-- CONTENT SECTIONS -->
-    <main class="main-container">
-        
-        <!-- ABOUT SECTION -->
-        <section id="about" class="section-block">
-            <div class="section-header">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>About Command</span>
-            </div>
-            <div class="section-body">
-                <p>The United States Army Special Operations Command (US ASOC) Roblox MILSIM generates, structures, and deploys disciplined, high-readiness Army Special Operations Forces to execute realistic tactical simulations and joint operational maneuvers.</p>
-                <p style="margin-top: 1rem;">Operating under strict chain-of-command protocols, realistic communications discipline, and comprehensive SOPs, our units deliver unmatched tactical precision.</p>
-            </div>
-        </section>
-
-        <!-- UNITS SECTION -->
-        <section id="units" class="section-block">
-            <div class="section-header">
-                <i class="fa-solid fa-users"></i>
-                <span>Subordinate Units</span>
-            </div>
-            <div class="section-body">
-                <div class="units-grid">
-                    <div class="unit-card">
-                        <h3>75th Ranger Regiment</h3>
-                        <p>Premier light infantry strike force specializing in airfield seizures and direct action operations.</p>
-                    </div>
-                    <div class="unit-card">
-                        <h3>1st Special Forces Command</h3>
-                        <p>Specialized operational detachment teams executing unconventional warfare and foreign defense.</p>
-                    </div>
-                    <div class="unit-card">
-                        <h3>160th SOAR (Night Stalkers)</h3>
-                        <p>Special operations aviation regiment delivering precise airborne insertion and close air support.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROPAGANDA / MEDIA SECTION -->
-        <section id="propaganda" class="section-block">
-            <div class="section-header">
-                <i class="fa-solid fa-image"></i>
-                <span>Propaganda & Media</span>
-            </div>
-            <div class="section-body">
-                <div class="propaganda-grid">
-                    <div class="propaganda-item">
-                        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80" alt="Tactical Night Deployment">
-                    </div>
-                    <div class="propaganda-item">
-                        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" alt="Field Exercises">
-                    </div>
-                    <div class="propaganda-item">
-                        <img src="https://images.unsplash.com/photo-1579912437766-7892db632d43?auto=format&fit=crop&w=800&q=80" alt="Aviation Insertion">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 UNITED STATES ARMY SPECIAL OPERATIONS COMMAND (ROBLOX MILSIM).</p>
-        <p style="margin-top: 5px; opacity: 0.6;">NOT AFFILIATED WITH THE U.S. DEPARTMENT OF DEFENSE OR ROBLOX CORPORATION.</p>
-    </footer>
-
-    <!-- INTERACTIVE NAV SCRIPT -->
-    <script>
-        // Smooth Active State Toggle for Navigation
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (pageYOffset >= sectionTop)
+            font

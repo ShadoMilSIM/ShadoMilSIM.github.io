@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>US ASOC | Army Special Operations Command</title>
+<meta name="description" content="US ASOC is a Roblox military simulation group. Explore our units, chain of command and mission.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#050505;
+  --panel:#0b0d0d;
+  --panel-2:#141716;
+  --gold:#ffd400;
+  --gold-dim:#7a6500;
+  --red:#e01b1b;
+  --text:#e9e9e4;
+  --muted:#a9aaa4;
+  --display:"Orbitron","Arial Black",sans-serif;
+  --body:"Open Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--black);color:var(--text);font:400 1rem/1.65 var(--body)}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(5,5,5,.94);border-bottom:1px solid var(--gold);backdrop-filter:blur(6px)}
+.nav-in{max-width:1100px;margin:auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.7rem;color:#fff;text-decoration:none;font:800 1.1rem var(--display);letter-spacing:.04em}
+.brand img{width:40px;height:40px;object-fit:contain}
+.nav ul{display:flex;gap:1.4rem;list-style:none;margin:0;padding:0}
+.nav ul a{color:var(--text);text-decoration:none;font-weight:600;font-size:.95rem;padding:.3rem 0;border-bottom:2px solid transparent}
+.nav ul a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Hero */
+.hero{min-height:calc(100vh - 62px);display:grid;place-items:center;text-align:center;padding:4rem 1.25rem;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at center,#1a1a14 0%,var(--black) 70%)}
+.hero::before{content:"";position:absolute;inset:0;background:url("images/hero.jpg") center/cover no-repeat;opacity:.22}
+.hero>*{position:relative}
+.hero h1{font:800 clamp(2rem,6.5vw,4.6rem)/1.1 var(--display);color:var(--gold);margin:0 0 1.2rem;letter-spacing:.03em;text-transform:uppercase}
+.hero .motto{font:italic 600 1.4rem var(--body);color:#fff;margin:0 0 2rem}
+.btn{display:inline-block;padding:.85rem 2rem;border:2px solid var(--gold);background:rgba(255,212,0,.08);color:var(--gold);
+  font:600 1rem var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--gold);color:var(--black)}
+
+/* Sections */
+main section{max-width:900px;margin:auto;padding:4.5rem 1.25rem}
+h2{font:800 1.7rem var(--display);color:var(--gold);text-align:center;margin:0 0 1.6rem;letter-spacing:.04em;text-transform:uppercase}
+.lead{border-left:4px solid var(--gold);background:rgba(255,212,0,.06);padding:1rem 1.3rem;margin:0 0 2rem}
+.card{background:var(--panel);border:1px solid #2a2a1c;border-radius:6px;padding:1.6rem}
+blockquote{margin:0;border-left:4px solid var(--red);padding:1rem 1.4rem;background:rgba(224,27,27,.07);font:italic 600 1.15rem/1.6 var(--body)}
+
+/* Chain of command */
+.chain{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.6rem}
+.chain li{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:var(--panel-2);border:1px solid #2a2a1c;border-radius:4px;padding:.8rem 1.1rem}
+.chain b{color:var(--gold);font-weight:600}
+
+/* Units */
+.tabs{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-bottom:1.6rem}
+.tab{font:600 .85rem var(--display);letter-spacing:.05em;color:#fff;background:var(--black);border:1px solid var(--gold-dim);border-radius:6px;padding:.7rem 1.2rem;cursor:pointer}
+.tab:hover{border-color:var(--gold)}
+.tab[aria-selected="true"]{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(255,212,0,.25)}
+.panel[hidden]{display:none}
+.panel{text-align:center}
+.panel h3{font:600 1.3rem var(--body);color:var(--gold);margin:.8rem 0 1rem}
+.crest{width:84px;height:84px;object-fit:contain}
+.links,.tags{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin:0 0 1.2rem}
+.links a{border:1px solid var(--gold-dim);background:var(--black);padding:.5rem 1.1rem;text-decoration:none;font-weight:600;border-radius:3px}
+.links a:hover{border-color:var(--gold)}
+.tags span{background:rgba(255,212,0,.12);color:var(--gold);padding:.55rem 1.2rem;font-size:.92rem}
+.panel p.desc{text-align:left;background:var(--panel-2);padding:1rem 1.2rem;border-radius:5px}
+.sub{text-align:left;border:1px solid #2a2a1c;border-radius:6px;padding:1.3rem;margin-top:1.2rem}
+.sub h4{font:800 1.15rem var(--display);color:var(--gold);margin:0 0 .6rem;text-transform:uppercase}
+.sub p{margin:0;background:var(--panel-2);padding:.9rem 1.1rem;border-radius:4px}
+
+/* Propaganda */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.gallery figure{margin:0;background:var(--panel);border:1px solid #2a2a1c;border-radius:6px;overflow:hidden}
+.gallery img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--panel-2)}
+.gallery figcaption{padding:.7rem 1rem;color:var(--muted);font-size:.9rem}
+
+footer{border-top:1px solid var(--gold);text-align:center;padding:2rem 1.25rem;color:var(--muted);font-size:.85rem}
+
+@media (max-width:560px){
+  .nav-in{flex-direction:column;gap:.4rem}
+  .nav ul{gap:1rem}
+  .chain li{flex-direction:column;gap:.1rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><img src="images/logo.png" alt="" onerror="this.style.display='none'">US ASOC</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#units">Units</a></li>
+        <li><a href="#propaganda">Propaganda</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <div>
+      <h1>Army Special Operations Command</h1>
+      <p class="motto">"Sine Pari"</p>
+      <a class="btn" href="#about">Learn more</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About ASOC</h2>
+    <p class="lead">The Army Special Operations Command is responsible for the command and control of Army special operations forces worldwide. We provide rapid, sustainable, and scalable special operations forces ready to deploy, fight, and win.</p>
+
+    <div class="card">
+      <h2>Mission statement</h2>
+      <blockquote>"To provide rapid, sustainable, and scalable special operations forces ready to deploy, fight, and win across the full spectrum of military operations."</blockquote>
+    </div>
+
+    <div class="card" style="margin-top:1.4rem">
+      <h2>ASOC chain of command</h2>
+      <p style="text-align:center;margin:0">Below is the official ASOC chain of command that all personnel are required to follow:</p>
+      <!-- EDIT: replace each name with your own Roblox usernames -->
+      <ul class="chain">
+        <li><b>Commanding General</b><span>General, YourUsername</span></li>
+        <li><b>Deputy Commanding General</b><span>Lieutenant General, Username</span></li>
+        <li><b>Command Sergeant Major</b><span>Command Sergeant Major, Username</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="units">
+    <h2>Units</h2>
+    <div class="card">
+      <div class="tabs" role="tablist" aria-label="ASOC units">
+        <button class="tab" role="tab" id="t-rr" aria-controls="p-rr" aria-selected="true">75TH RR</button>
+        <button class="tab" role="tab" id="t-asf" aria-controls="p-asf" aria-selected="false" tabindex="-1">ASF</button>
+        <button class="tab" role="tab" id="t-jfk" aria-controls="p-jfk" aria-selected="false" tabindex="-1">JFKSWCS</button>
+        <button class="tab" role="tab" id="t-soar" aria-controls="p-soar" aria-selected="false" tabindex="-1">160TH SOAR</button>
+      </div>
+
+      <!-- EDIT: swap the # links for your real Roblox group and Discord invite URLs -->
+      <div class="panel" role="tabpanel" id="p-rr" aria-labelledby="t-rr">
+        <img class="crest" src="images/75th.png" alt="75th Ranger Regiment crest" onerror="this.style.display='none'">
+        <h3>75th Ranger Regiment</h3>
+        <div class="links"><a href="#" target="_blank" rel="noopener">Roblox Group</a><a href="#" target="_blank" rel="noopener">Discord</a></div>
+        <div class="tags"><span>Global Deployment</span><span>Rapid Response</span><span>Elite Unit</span></div>
+        <p class="desc">The 75th Ranger Regiment consists of three elite Ranger Battalions, each specialized in different aspects of military operations. Known for their rigorous selection process and demanding training, Rangers are among the most skilled soldiers in the US Army.</p>
+        <div class="sub">
+          <h4>1st Ranger Battalion</h4>
+          <p>The elite battalion within the 75th, focused on wargames and scrims/raids. They are the first to engage with enemies, deploying the best personnel the 75th can offer. The battalion is organized into two specialized companies.</p>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-asf" aria-labelledby="t-asf" hidden>
+        <h3>Army Special Forces</h3>
+        <div class="links"><a href="#" target="_blank" rel="noopener">Roblox Group</a><a href="#" target="_blank" rel="noopener">Discord</a></div>
+        <p class="desc">Write your Special Forces unit description here.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-jfk" aria-labelledby="t-jfk" hidden>
+        <h3>JFK Special Warfare Center and School</h3>
+        <div class="links"><a href="#" target="_blank" rel="noopener">Roblox Group</a><a href="#" target="_blank" rel="noopener">Discord</a></div>
+        <p class="desc">Write your training school description here.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-soar" aria-labelledby="t-soar" hidden>
+        <h3>160th Special Operations Aviation Regiment</h3>
+        <div class="links"><a href="#" target="_blank" rel="noopener">Roblox Group</a><a href="#" target="_blank" rel="noopener">Discord</a></div>
+        <p class="desc">Write your aviation unit description here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="propaganda">
+    <h2>Propaganda</h2>
+    <!-- EDIT: put your screenshots in an /images folder and change the file names -->
+    <div class="gallery">
+      <figure><img src="images/prop1.jpg" alt="ASOC operators on deployment" loading="lazy"><figcaption>Operation caption here</figcaption></figure>
+      <figure><img src="images/prop2.jpg" alt="ASOC Rangers during a raid" loading="lazy"><figcaption>Operation caption here</figcaption></figure>
+      <figure><img src="images/prop3.jpg" alt="ASOC aviation on a mission" loading="lazy"><figcaption>Operation caption here</figcaption></figure>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>US ASOC is a Roblox military simulation group. It is not affiliated with, or endorsed by, the real US Army or Roblox Corporation.</p>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function select(tab){
+    tabs.forEach(function(t){
+      var on=t===tab;
+      t.setAttribute('aria-selected',on);
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    tab.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight')select(tabs[(i+1)%tabs.length]);
+      if(e.key==='ArrowLeft')select(tabs[(i-1+tabs.length)%tabs.length]);
+    });
+  });
+})();
+</script>
+</body>
+</html>
